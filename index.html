@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en" xmlns= "http://www.w3.org/1999/xhtml">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
+    <script>$.widget.bridge('uitooltip', $.ui.tooltip);</script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="google" content="notranslate">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-8" id="newGameFormDiv">
+            <section class="col-xs-12">
+                <form class="form-horizontal" id="newPlayerDiv">
+                    <div class="form-group">
+                        <label class="col-sm-3 nopadding newPlayerFormControl control-label" id="createPlayerLabel" for="newPlayer">New Player:&nbsp;</label>
+                        <div class="col-sm-9">
+                            <input id="newPlayer" class="form-control newPlayerFormControl" data-container="body" placeholder="Player Name" data-toggle="tooltip" title="Player names must be unique and cannot be blank.">
+                            <button id="btnCreatePlayer" class="btn btn-default newPlayerFormControl" disabled>Create</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label id="startingAmountLabel" class="col-sm-3 nopadding startGameElement invisible control-label" for="startingAmount">Starting Amount:&nbsp;</label>
+                        <div class="col-sm-9">
+                            <input id="startingAmount" type="number" disabled class="startGameElement form-control invisible" value="1630" title="A valid number must be entered to start the game.">
+                        </div>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <div class="checkbox invisible startGameElement">
+                                <label id="labelCheckboxDefaultGame" class="checkbox">
+                                    <input id="defaultGameCheckbox" type="checkbox">    
+                                    <span>Set as default game</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <div class="checkbox invisible startGameElement">
+                                <label id="labelCheckboxBoardPlayer" class="checkbox">
+                                    <input id="checkboxBoardPlayer" type="checkbox">    
+                                    <span>Create board player</span>
+                                </label>
+                            </div>
+                        </div>
+                        <label id="labelBoardPlayer" class="col-sm-3 boardPlayerElement nopadding control-label invisible" for="boardPlayer">Board Player:&nbsp;</label>
+                        <div class="col-sm-9">
+                                <input id="inputBoardPlayer" class="boardPlayerElement form-control invisible" value="Board" data-toggle="tooltip" title='Use this "player" for games that have a pot that accumulates money until a player wins the pot.'>
+                        </div>
+                        <div class="col-sm-12 form-group">
+                            <button id="btnStartDefaultGame" data-container="body" data-toggle="tooltip" class="btn invisible">Start Default Game</button>
+                            <button id="btnStartGame" disabled type="button" class="btn startGameElement invisible" >Start Game</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <div id="newPlayerList" class="help-block block"></div>
+        </div>
+    </div>
+    <div class="row" id="gamePanel">
+        <div class="col-sm-12 col-md-6" id="newGameFormDiv">
+            <table id="gameTable">
+                <tr>
+                    <td id="playerPanel">
+                        <table id="controlsTable">
+                            <tr>
+                                <td class="tdButtons">
+                                    <button type='button' id='buttonClear' class='btn btn-sm'>Clear</button><br>
+                                    <button type='button' id='buttonAdd200' class='btn btn-sm colorgreen'>+ $200</button>
+                                </td>
+                                <td class="tdButtons">
+                                    <button type='button' disabled id='buttonAddMoney' class='btn btn-sm colorgreen'>+ $</button><br>
+                                    <button type='button' disabled id='buttonSubtractMoney' class='btn btn-sm colorred'>- $</button>
+                                </td>
+                                <td id="tdInput">
+                                    <input id='dollarsAddSubtract' data-container="body" type="number" class="form-control">
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td id="currency">
+                        <div class="bill" data-bill="500">$500</div>
+                        <div class="bill" data-bill="100">$100</div>
+                        <div class="bill" data-bill="50">$50</div>
+                        <div class="bill" data-bill="20">$20</div>
+                        <div class="bill" data-bill="10">$10</div>
+                        <div class="bill" data-bill="5">$5</div>
+                        <div class="bill" data-bill="1">$1</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-12 col-md-5 col-lg-4">
+        <div class="visible-sm visible-xs"><hr></div>
+            <div id="activityLog"></div>
+            <div id="uiConfig">
+                <button id="btnNewGame" class="btn btn-md btn-inline" data-toggle="modal" data-target="#newGameModal">New Game</button>
+            </div>
+        </div>
+    </div>
+  <!-- New Game Confirmation Modal -->
+  <div class="modal fade" id="newGameModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Start a New Game</h4>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure that you want to abandon this game and start a new one?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          <button id="buttonNewGameConfirm" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Delete Player Confirmation Modal -->
+  <div class="modal fade" id="modalDeletePlayerConfirm" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Confirm Player Deletion</h4>
+        </div>
+        <div id="divDeletePlayerConfirmBody" class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          <button id="buttonDeletePlayerConfirm" type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

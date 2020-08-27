@@ -1,0 +1,261 @@
+body{
+    margin-top: .5in;
+    background-color: #FAFAFA;
+}
+
+td{
+    color: #888888;
+    vertical-align: top;
+}
+
+#newPlayer, #startingAmount, #inputBoardPlayer {
+    width: 100px;
+    max-width: 100px;
+    margin-left: -15px;
+    margin-bottom: 5px;
+}
+
+#newPlayerDiv{
+    background-color: #54A759;
+    padding: 2em;
+    width: 100%;
+    border-radius: 20px;
+}
+
+#newPlayerList{
+    text-align: center;
+    font-size: 2em;
+}
+
+#gamePanel{
+    display: none;
+    text-align: center;
+    width: 100%
+}
+
+#playerPanel{
+    text-align: right;
+    vertical-align: top;
+}
+
+.playerDiv{
+    padding-top: .35em;
+    padding-bottom: .35em;
+    margin-right: .75em;
+    font-size: 2em;
+    cursor: pointer;
+    border-radius: 15px;
+}
+
+.playerDollars{
+    width: 90px;
+    border: none;
+    background-color: #FAFAFA;
+    cursor: pointer !important;
+}
+
+#buttonAddMoney, #buttonSubtractMoney, #buttonAdd200, #buttonClear, #dollarsAddSubtract {
+    margin-left: 5px;
+    margin-bottom: 5px;
+    vertical-align: middle;
+    width: 80px;
+    font-weight: bold;
+    font-size: 14;
+}
+
+#dollarsAddSubtract{
+    width: 75px;
+    display: inline;
+    margin-left: 1em;
+}
+
+#currency{
+    height: 100%;
+    margin-left: .25in;
+}
+
+.bill{
+    text-align: center;
+    background-color: #54A759;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    cursor: pointer;
+    width: 80px;
+    border-radius: 15px;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+}
+
+#gameTable{
+    margin: 0 auto;
+}
+
+#activityLog{
+    vertical-align: top;
+    padding-left: 15px;
+    height: 400px;
+    overflow-y: scroll;
+    font-weight: bold;
+    line-height: 1.5em;
+    border: solid 1px #cccccc;
+    border-radius: 10px;
+    margin: auto;
+    text-align: left;
+    width: 100%
+}
+
+#activityLogCell{
+    overflow: hidden;
+}
+
+.playerName {
+    display: inline;
+}
+
+.tooltip > .tooltip-inner{
+    padding: 5px;
+    background-color: #86C98A;
+    color: #333333;
+    font-weight: bold;
+}
+
+.tooltip.top > .tooltip-arrow {
+    border-top: 5px solid #86C98A;
+}
+
+.tooltip.bottom > .tooltip-arrow {
+    border-bottom: 5px solid #86C98A;
+}
+
+.tooltip.right > .tooltip-arrow {
+    border-right: 5px solid #86C98A;
+}
+
+.tooltip.left > .tooltip-arrow {
+    border-left: 5px solid #86C98A;
+}
+
+#uiConfig{
+    padding-top: 10px;
+    text-align: right;
+    width: 100%; 
+    margin: auto
+}
+
+.colorRed{
+    color: red;
+}
+
+.colorGreen{
+    color: green;
+}
+
+.startGameElement, .newPlayerFormControl {
+    display: inline;
+}
+
+hr {
+    border-color: #86C98A;
+}
+
+#tdInput {
+    vertical-align: middle;
+}
+
+.tdButtons {
+    text-align: center;
+}
+
+#controlsTable{
+    margin-bottom: 10px;
+}
+
+label {
+    white-space: nowrap;
+}
+
+.nopadding {
+   padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+#newGameFormDiv {
+    overflow: auto;
+}
+
+.modal-header{
+    background-color: #54A759;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+@media all and (max-width: 500px) { /* screen size until 500px */
+    .playerDiv {
+        font-size: 1.5em; /* 0.8x default size */
+    }
+    #activityLog {
+        height: 175px;
+    }
+    .btn-sm {
+        width: 60px !important;
+    }
+    .container {
+        padding-right: 0px;
+    }
+    .bill {
+        width: 50px;
+        font-size: .75em;
+    }
+    #uiConfig .btn {
+        font-size: .85em;
+    }
+}
+
+@media all and (max-width: 990px) { /* screen size until 990px */
+    #activityLog {
+        height: 200px;
+    }
+    
+    #uiConfig, #activityLog {
+        width: 75%;
+    }
+}
+
+#startingAmount {
+    margin-bottom: 10px !important;
+}
+
+
+.tooltip {
+    white-space: pre-line;
+}
+
+#btnStartGame, #btnStartDefaultGame {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 6px;
+}
+
+#tdDeletePlayerButtonCell {
+    padding-top: 30px;
+}
+
+#btnDeletePlayer {
+    white-space: normal;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#inputBoardPlayer, #labelBoardPlayer {
+    margin-top: 10px;
+}
